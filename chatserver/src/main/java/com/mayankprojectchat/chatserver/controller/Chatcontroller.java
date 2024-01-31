@@ -10,18 +10,20 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class Chatcontroller {
+
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
-
-    @MessageMapping("/message") //  /app/message
-    @SendTo("/chatroom/public") //
-    private Message recievePublicMessage(@Payload Message message){
+    @MessageMapping("/message")
+    @SendTo("/chatroom/public")
+    public Message receiveMessage(@Payload Message message){
         return message;
     }
+
     @MessageMapping("/private-message")
-    public Message recieverPrivateMessage(@Payload Message message){
-        simpMessagingTemplate.convertAndSendToUser(message.getSenderName(),"/private",message); // /user/Mayank/private  -- here we are dnimaically sending message to particular user
+    public Message recMessage(@Payload Message message){
+        simpMessagingTemplate.convertAndSendToUser(message.getReceiverName(),"/private",message);
+        System.out.println(message.toString());
         return message;
     }
 }
