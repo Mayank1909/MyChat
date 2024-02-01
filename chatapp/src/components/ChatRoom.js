@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
-
 var stompClient = null;
 const ChatRoom = () => {
     const [privateChats, setPrivateChats] = useState(new Map());
@@ -17,19 +16,18 @@ const ChatRoom = () => {
         console.log(userData);
     }, [userData]);
 
+
     const connect = () => {
         let Sock = new SockJS('http://localhost:8080/ws');
         stompClient = over(Sock);
         stompClient.connect({}, onConnected, onError);
     }
-
     const onConnected = () => {
         setUserData({ ...userData, "connected": true });
         stompClient.subscribe('/chatroom/public', onMessageReceived);
         stompClient.subscribe('/user/' + userData.username + '/private', onPrivateMessage);
         userJoin();
     }
-
     const userJoin = () => {
         var chatMessage = {
             senderName: userData.username,
@@ -37,7 +35,13 @@ const ChatRoom = () => {
         };
         stompClient.send("/app/message", {}, JSON.stringify(chatMessage));
     }
-
+    const registerUser = () => {
+        connect();
+    }
+    const handleUsername = (event) => {
+        const { value } = event.target;
+        setUserData({ ...userData, "username": value });
+    }
     const onMessageReceived = (payload) => {
         var payloadData = JSON.parse(payload.body);
         switch (payloadData.status) {
@@ -67,12 +71,10 @@ const ChatRoom = () => {
             setPrivateChats(new Map(privateChats));
         }
     }
-
     const onError = (err) => {
         console.log(err);
 
     }
-
     const handleMessage = (event) => {
         const { value } = event.target;
         setUserData({ ...userData, "message": value });
@@ -108,14 +110,7 @@ const ChatRoom = () => {
         }
     }
 
-    const handleUsername = (event) => {
-        const { value } = event.target;
-        setUserData({ ...userData, "username": value });
-    }
 
-    const registerUser = () => {
-        connect();
-    }
     return (
         <div className="container">
             {userData.connected ?
@@ -174,7 +169,8 @@ const ChatRoom = () => {
                     <button type="button" onClick={registerUser}>
                         connect
                     </button>
-                </div>}
+                </div>
+            }
         </div>
     )
 }

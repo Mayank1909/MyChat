@@ -1,6 +1,8 @@
 import React from 'react'
-
+import useOnlineStatus from '../utils/useOnlineStatus';
 const Header = () => {
+
+    const onlineStatus = useOnlineStatus();
     return (
         <div>
             <header class="header sticky sticky--top js-header">
@@ -14,6 +16,10 @@ const Header = () => {
                             <li class="navigation__item"><a href="#" class="navigation__link">Work</a></li>
                             <li class="navigation__item"><a href="#" class="navigation__link">Clients</a></li>
                             <li class="navigation__item"><a href="#" class="navigation__link">Contact</a></li>
+                            <li className="online-status">
+                                Online Status:{onlineStatus ? "✅" : "🔴"}
+
+                            </li>
                         </ul>
                     </nav>
 
