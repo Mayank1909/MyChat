@@ -55,6 +55,8 @@ Follow these steps to run the application locally:
 - npm install (in the react-client folder)
 - npm start
 
+You have to open two tabs to start chatting, login from one tab and make login from another tab using localhost:3000 then you may astart login.
+
 2. Server
    - - mvn spring-boot:run (in the spring-ws-server)
 
