@@ -158,6 +158,7 @@ ul {
   background-color: #fff;
   padding-block: 2em;
   font-size: large;
+  display: flex;
 }
 
 
@@ -206,4 +207,12 @@ ul {
   background-color: #000;
   border-radius: 999em;
   color: #fff;
+}
+
+.welcome-bg {
+
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  text-decoration: underline;
+
 }

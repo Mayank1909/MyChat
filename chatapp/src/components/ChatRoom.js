@@ -157,18 +157,22 @@ const ChatRoom = () => {
                     </div>}
                 </div>
                 :
-                <div className="register">
-                    <input
-                        id="user-name"
-                        placeholder="Enter your name"
-                        name="userName"
-                        value={userData.username}
-                        onChange={handleUsername}
-                        margin="normal"
-                    />
-                    <button type="button" onClick={registerUser}>
-                        connect
-                    </button>
+                <div className='register-h'>
+
+                    <div className="register">
+
+                        <input
+                            id="user-name"
+                            placeholder="Enter your name"
+                            name="userName"
+                            value={userData.username}
+                            onChange={handleUsername}
+                            margin="normal"
+                        />
+                        <button type="button" onClick={registerUser}>
+                            connect
+                        </button>
+                    </div>
                 </div>
             }
         </div>

@@ -9,7 +9,9 @@ const Header = () => {
 
                 <div class="grid">
 
+
                     <nav class="navigation">
+
                         <ul class="navigation__list navigation__list--inline">
                             <li class="navigation__item"><a href="#" class="navigation__link navigation__link--is-active">Home</a></li>
                             <li class="navigation__item"><a href="#" class="navigation__link">About Us</a></li>
@@ -31,4 +33,5 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;
+
